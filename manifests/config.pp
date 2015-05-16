@@ -1,5 +1,2 @@
 class ipython::config {
-  
-
-
 }

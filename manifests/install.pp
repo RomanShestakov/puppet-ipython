@@ -32,19 +32,20 @@ class ipython::install {
   # run install via pip
   if $ipython::install_method == 'pip' {
 
-    package { 'python-pip':
-      ensure => present,
+    if $ipython::manage_pip {
+      package { 'python-pip':
+        ensure => present,
+      }
     }
 
     include ipython::pip_install
 
-  # run install via git
-  } elsif $ipython::install_method == 'git' {
+    # run install via git
+    } elsif $ipython::install_method == 'git' {
 
     include ipython::git_install
-
-  } else {
+    
+    } else {
     err('unsupported install method')
-  }
-
+    }
 }
