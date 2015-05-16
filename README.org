@@ -1,0 +1,23 @@
+#+TITLE:    Puppet module for installing ipython
+#+LANGUAGE: en
+
+This is a fork of original puppet-ipython found here: https://github.com/kaazoo/puppet-ipython
+
+The main reason I forked the original version is to make puppet-ipython compatable with puppet-python package: 
+https://github.com/stankevich/puppet-python
+
+Both packages could be used together now.
+
+* Manifest example:
+
+#+BEGIN_SRC 
+    class { 'python' :
+      version    => 'system',
+      pip        => true,
+      dev        => true,
+      virtualenv => true,
+      gunicorn   => true,
+    }
+    class { 'ipython' : }
+    Class['python'] -> Class['ipython']
+#+END_SRC
